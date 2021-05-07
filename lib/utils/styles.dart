@@ -17,7 +17,11 @@ class Styles {
       hoverColor: isDarkTheme ? Color(0xff3A3A3B) : Color(0xff4285F4),
       focusColor: isDarkTheme ? Color(0xff0B2512) : Color(0xffA8DAB5),
       disabledColor: Colors.grey,
-      textSelectionColor: isDarkTheme ? Colors.white : Colors.black,
+      textSelectionTheme: TextSelectionThemeData(
+        selectionColor: isDarkTheme ? Colors.white : Colors.black,
+        cursorColor: isDarkTheme ? Colors.white : Colors.black,
+        selectionHandleColor: isDarkTheme ? Colors.white : Colors.black,
+      ),
       cardColor: isDarkTheme ? Color(0xFF151515) : Colors.white,
       canvasColor: isDarkTheme ? kDarkColor : Colors.grey[50],
       brightness: isDarkTheme ? Brightness.dark : Brightness.light,

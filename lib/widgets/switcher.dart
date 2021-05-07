@@ -24,10 +24,12 @@ class _CustomSwitchState extends State<CustomSwitch>
     _animationController =
         AnimationController(vsync: this, duration: Duration(milliseconds: 30));
     _circleAnimation = AlignmentTween(
-            begin: widget.value ? Alignment.centerRight : Alignment.centerLeft,
-            end: widget.value ? Alignment.centerLeft : Alignment.centerRight)
-        .animate(CurvedAnimation(
-            parent: _animationController, curve: Curves.linear));
+      begin: widget.value ? Alignment.centerRight : Alignment.centerLeft,
+      end: widget.value ? Alignment.centerLeft : Alignment.centerRight,
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.linear,
+    ));
   }
 
   @override
@@ -47,27 +49,31 @@ class _CustomSwitchState extends State<CustomSwitch>
                 ? widget.onChanged(true)
                 : widget.onChanged(false);
           },
-          child: Container(
-            width: 52.0,
-            height: 28.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(24.0),
-              color: !themeChange.darkTheme ? kDarkColor : Colors.amber[600],
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Container(
-                alignment:
-                    widget.value ? Alignment.centerRight : Alignment.centerLeft,
-                child: !themeChange.darkTheme
-                    ? Icon(
-                        Icons.wb_sunny,
-                        color: Colors.orangeAccent,
-                      )
-                    : Icon(
-                        Icons.brightness_3,
-                        color: kDarkColor,
-                      ),
+          child: Tooltip(
+            message: themeChange.darkTheme ? 'Dark Theme' : 'Light Theme',
+            child: Container(
+              width: 52.0,
+              height: 28.0,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(24.0),
+                color: !themeChange.darkTheme ? kDarkColor : Colors.amber[600],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: Container(
+                  alignment: widget.value
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
+                  child: !themeChange.darkTheme
+                      ? Icon(
+                          Icons.wb_sunny,
+                          color: Colors.orangeAccent,
+                        )
+                      : Icon(
+                          Icons.brightness_3,
+                          color: kDarkColor,
+                        ),
+                ),
               ),
             ),
           ),
